@@ -23,7 +23,7 @@
 		
 		const geometry = new THREE.BoxGeometry(1,1,1);
 		const material = new THREE.MeshStandardMaterial({color: new THREE.Color('skyblue')});
-		const box = new THREE.Mesh(geometry, material);
+		box = new THREE.Mesh(geometry, material);
 		scene.add(box);
 		
 		const light = new THREE.DirectionalLight();
