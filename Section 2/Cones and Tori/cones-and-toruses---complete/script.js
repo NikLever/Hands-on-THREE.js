@@ -1,4 +1,4 @@
-var scene, camera, renderer, box1, box2;
+var scene, camera, renderer, mesh;
 
 init();
 
@@ -6,8 +6,8 @@ function init(){
   scene = new THREE.Scene();
   scene.background = new THREE.Color('grey');
   
-  camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  camera.position.set(0, 1, 3);
+  camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  camera.position.set(0, 1, 12);
   
   const ambient = new THREE.HemisphereLight(0xffffbb, 0x080820);
   scene.add(ambient);
@@ -42,18 +42,14 @@ function init(){
   
   scene.background = cubemap;
   
+  const material = new THREE.MeshStandardMaterial({color:0xffff00, metalness:0.95, roughness:0.01, emissive: 0x222222, envMap: cubemap});
+  
   //Add meshes here
-  const geometry = new THREE.BoxGeometry(1,1,1);
-  const material1 = new THREE.MeshBasicMaterial({ color: 0xffffff, map: tex });
-  const material2 = new THREE.MeshLambertMaterial({ color: 0xffffff, map: tex, alphaMap: alpha, transparent: true, side: THREE.DoubleSide});
-  
-  box1 = new THREE.Mesh(geometry, material1);
-  box1.position.x = -1;
-  scene.add(box1);
-  
-  box2 = new THREE.Mesh(geometry, material2);
-  box2.position.x = 1;
-  scene.add(box2);
+ const geometry1 = new THREE.CylinderGeometry(0,3,7,30);
+  const geometry2 = new THREE.TorusGeometry(4,1,16,100);
+  const geometry3 = new THREE.TorusKnotGeometry(3,1,100,16,2,3);
+  mesh = new THREE.Mesh(geometry3, material);
+  scene.add(mesh);
   
   window.addEventListener( 'resize', resize, false);
   
@@ -63,8 +59,8 @@ function init(){
 function update(){
   requestAnimationFrame( update );
 	renderer.render( scene, camera );
-  box1.rotation.y += 0.01;
-  box2.rotation.y -= 0.01;
+  mesh.rotation.x += 0.01;
+  mesh.rotation.z -= 0.01;
 }
 
 function resize(){
