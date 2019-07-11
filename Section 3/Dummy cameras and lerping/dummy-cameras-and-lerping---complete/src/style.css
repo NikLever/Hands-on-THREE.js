@@ -1,0 +1,19 @@
+body{
+  padding: 0;
+  margin: 0;
+}
+
+#camera-btn{
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  color: #ffffff;
+  background: #0000aa;
+  font-size: 30px;
+  text-align: center;
+  line-height: 45px;
+  vertical-align: middle;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
