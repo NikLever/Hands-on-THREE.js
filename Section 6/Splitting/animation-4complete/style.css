@@ -1,0 +1,15 @@
+body{
+  padding: 0;
+  margin: 0;
+}
+
+#btns{
+  position: absolute;
+  right: 10px;
+  bottom: 25px;
+}
+.btn{
+  background: #fea;
+  padding: 15px;
+  font-family: arial;
+}
